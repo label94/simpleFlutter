@@ -31,3 +31,11 @@ google-services.json
 
 # Android Profiling
 *.hprof
+
+# FVM Version Cache
+.fvm/
+
+# FVM
+.flutter-plugins
+.packages
+.dart_tool/
