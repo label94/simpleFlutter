@@ -40,7 +40,7 @@ class LoggerDart {
   }
 
   // 커스텀 printLog
-  static void customLog(String tag, String message, {LogLevel level = LogLevel.info}) {
+  static void customLog(String tag, Object message, {LogLevel level = LogLevel.info}) {
     final trace = StackTrace.current;
     final traceString = trace.toString().split('\n')[1];
     final location = traceString.replaceFirst(RegExp(r'#1\s+'), '');
