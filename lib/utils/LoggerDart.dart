@@ -74,7 +74,7 @@ class LoggerDart {
 
       for (int i = 0; i < wrappedLines.length; i++) {
         final lineNumber = (i + 1).toString().padLeft(2, '0');
-        final indent = i == 0 ? '' : '    '; // 첫 줄은 기본, 이후 들여쓰기
+        final indent = i == 0 ? '' : ' '; // 첫 줄은 기본, 이후 들여쓰기
         print('[$tag]   $lineNumber │ $indent${wrappedLines[i]}');
       }
 
