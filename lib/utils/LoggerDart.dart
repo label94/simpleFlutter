@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/foundation.dart';
 
 /// Dart Log 표시 관련 유틸 클래스
@@ -34,8 +35,8 @@ class LoggerDart {
         return '\x1B[31m'; // 빨강
       case LogLevel.warning:
         return '\x1B[33m'; // 노랑
-      case LogLevel.info:
-      return '\x1B[34m'; // 파랑
+      default:
+        return '\x1B[34m'; // 파랑
     }
   }
 
@@ -45,24 +46,36 @@ class LoggerDart {
     final traceString = trace.toString().split('\n')[1];
     final location = traceString.replaceFirst(RegExp(r'#1\s+'), '');
 
+    // 메시지를 줄 단위로 나눈 뒤 들여쓰기 적용
+    final messageStr = message.toString();
+    final messageLines = messageStr.split('\n');
+    final indentedMessage = messageLines.mapIndexed((i, line) {
+      return i == 0 ? line : '    $line';
+    }).join('\n');
+
     final prefix = _emojiForLevel(level);
     if (kDebugMode) {
-      print('$prefix [$location] $tag => $message');
+      final log = '$prefix $location => $indentedMessage';
+      print('[$tag] $log');
     }
   }
 
   // 커스텀 printLog 관련
   static String _emojiForLevel(LogLevel level) {
     switch (level) {
+      case LogLevel.verbose:
+        return '🔍 VERBOSE';
+      case LogLevel.debug:
+        return '🛠️ DEBUG';
       case LogLevel.error:
-        return '🟥 ERROR';
+        return '❌ ERROR';
       case LogLevel.warning:
-        return '🟨 WARNING';
+        return '⚠️ WARNING';
       case LogLevel.info:
-        return '🟦 INFO';
+        return 'ℹ️ INFO';
     }
   }
 }
 
 // Log level 관련 정의
-enum LogLevel { info, warning, error }
+enum LogLevel { info, warning, error, debug, verbose }
