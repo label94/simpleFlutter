@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
 import 'package:simple_flutter/screens/photo_screen.dart';
+import 'package:simple_flutter/screens/s_simple_state_ful.dart';
 import 'package:simple_flutter/screens/s_user_screen.dart';
 import 'package:simple_flutter/utils/logger_dart.dart';
 import 'dart:async';
@@ -72,7 +73,20 @@ class MyApp extends StatelessWidget {
                 )
               ),
               child: Text("실제 데이터 가져오기"),
+            ),
+
+            SizedBox(height: 20),
+            
+            ElevatedButton(
+              onPressed: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => Counter(initialCount: 0)
+                )
+              ),
+              child: Text('Stateful 위젯'),
             )
+            
           ],
         )
     );
