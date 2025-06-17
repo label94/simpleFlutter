@@ -44,7 +44,7 @@ class LoggerDart {
   static void customLog(String tag, Object message, {LogLevel level = LogLevel.info}) {
     final trace = StackTrace.current;
     final traceString = trace.toString().split('\n')[1];
-    final location = traceString.replaceFirst(RegExp(r'#1\s+'), '');
+    final location = traceString.replaceFirst(RegExp(r'#1\s+'), '').trim();
 
     // 메시지를 줄 단위로 나눈 뒤 들여쓰기 적용
     final messageStr = message.toString();
