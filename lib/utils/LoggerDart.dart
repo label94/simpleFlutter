@@ -41,22 +41,44 @@ class LoggerDart {
   }
 
   // 커스텀 printLog
-  static void customLog(String tag, Object message, {LogLevel level = LogLevel.info}) {
+  static void customLog(String tag, Object message, {LogLevel level = LogLevel.info, int maxLineLength = 50}) {
     final trace = StackTrace.current;
     final traceString = trace.toString().split('\n')[1];
     final location = traceString.replaceFirst(RegExp(r'#1\s+'), '').trim();
-
-    // 메시지를 줄 단위로 나눈 뒤 들여쓰기 적용
-    final messageStr = message.toString();
-    final messageLines = messageStr.split('\n');
-    final indentedMessage = messageLines.mapIndexed((i, line) {
-      return i == 0 ? line : '    $line';
-    }).join('\n');
-
     final prefix = _emojiForLevel(level);
+
+    // 로그 테두리 라인
+    final borderTop = '┌───────────────────────────────────────────────────────────────────────────────────────';
+    final borderBottom = '└───────────────────────────────────────────────────────────────────────────────────────';
+
+    // 메시지를 maxLineLength 기준으로 줄바꿈하는 함수
+    List<String> wrapMessage(String msg, int maxLen) {
+      List<String> lines = [];
+      int start = 0;
+      while (start < msg.length) {
+        int end = start + maxLen;
+        if (end > msg.length) end = msg.length;
+        lines.add(msg.substring(start, end));
+        start = end;
+      }
+      return lines;
+    }
+
+    final messageStr = message.toString();
+    final wrappedLines = wrapMessage(messageStr, maxLineLength);
+
     if (kDebugMode) {
-      final log = '$prefix $location => $indentedMessage';
-      print('[$tag] $log');
+      print('[$tag] $borderTop');
+      print('[$tag] $prefix $location');
+      print('[$tag]   log =>');
+
+      for (int i = 0; i < wrappedLines.length; i++) {
+        final lineNumber = (i + 1).toString().padLeft(2, '0');
+        final indent = i == 0 ? '' : '    '; // 첫 줄은 기본, 이후 들여쓰기
+        print('[$tag]   $lineNumber │ $indent${wrappedLines[i]}');
+      }
+
+      print('[$tag] $borderBottom');
     }
   }
 
