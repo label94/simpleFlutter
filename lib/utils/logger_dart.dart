@@ -41,7 +41,7 @@ class LoggerDart {
   }
 
   // 커스텀 printLog
-  static void customLog(String tag, Object message, {LogLevel level = LogLevel.info, int maxLineLength = 50}) {
+  static void customLog(String tag, Object message, {LogLevel level = LogLevel.info, int maxLineLength = 40}) {
     final trace = StackTrace.current;
     final traceString = trace.toString().split('\n')[1];
     final location = traceString.replaceFirst(RegExp(r'#1\s+'), '').trim();

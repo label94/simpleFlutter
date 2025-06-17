@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
 import 'package:simple_flutter/screens/photo_screen.dart';
 import 'package:simple_flutter/screens/s_user_screen.dart';
-import 'package:simple_flutter/utils/LoggerDart.dart';
+import 'package:simple_flutter/utils/logger_dart.dart';
 import 'dart:async';
 
 /// Flutter 의 맨 처음 시작점
@@ -60,6 +60,8 @@ class MyApp extends StatelessWidget {
               ),
               child: Text("cat photo"),
             ),
+
+            SizedBox(height: 20),
 
             // 두 번째 버튼
             ElevatedButton(

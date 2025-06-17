@@ -3,7 +3,7 @@ import 'package:simple_flutter/models/data/dto_posts.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-import '../utils/LoggerDart.dart';
+import '../utils/logger_dart.dart';
 
 /// 실제 데이터 가져오는 예제
 Future<List<Posts>> fetchPosts() async {
