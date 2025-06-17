@@ -18,28 +18,6 @@ class LoggerDart {
     return _cache.putIfAbsent(name, () => LoggerDart._internal(name));
   }
 
-  // 커스텀 debugPrint
-  static void customDebugPrint(String tag, String message, {LogLevel level = LogLevel.info}) {
-    final trace = StackTrace.current;
-    final traceString = trace.toString().split('\n')[1];
-    final location = traceString.replaceFirst(RegExp(r'#1\s+'), '');
-    final levelString = level.toString().split('.').last.toUpperCase();
-    final color = _colorForLevel(level);
-    debugPrint('$color[$levelString][$location] $tag => $message\x1B[0m'); // LogCat이 아닌 콘솔내에서 출력
-  }
-
-  // 커스텀 debugPrint 전용
-  static String _colorForLevel(LogLevel level) {
-    switch (level) {
-      case LogLevel.error:
-        return '\x1B[31m'; // 빨강
-      case LogLevel.warning:
-        return '\x1B[33m'; // 노랑
-      default:
-        return '\x1B[34m'; // 파랑
-    }
-  }
-
   // 커스텀 printLog
   static void customLog(String tag, Object message, {LogLevel level = LogLevel.info, int maxLineLength = 40}) {
     final trace = StackTrace.current;
