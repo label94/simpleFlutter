@@ -1,96 +1,18 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:english_words/english_words.dart';
-import 'package:simple_flutter/screens/photo_screen.dart';
-import 'package:simple_flutter/screens/s_simple_state_ful.dart';
-import 'package:simple_flutter/screens/s_user_screen.dart';
+import 'package:simple_flutter/screens/s_main_page.dart';
 import 'package:simple_flutter/utils/logger_dart.dart';
 import 'dart:async';
+
+import 'package:simple_flutter/widgets/shell/w_main_shell.dart';
 
 /// Flutter 의 맨 처음 시작점
 void main() {
   // runApp() 함수를 통해 괄호() 안에 주어진 위젯을 실행 시킴!
-  runApp( const MaterialApp(home: MyApp() ) );
+  runApp( const MaterialApp(home: MainShell()) );
 }
 
-/// StatelessWidget : state 가 변동되지 않는 화면
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  static const TAG = "TestLog";
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    final wordPair = WordPair.random();
-
-    // 테스트 코드
-    testCode();
-
-    return Scaffold(
-        appBar: AppBar(
-          title: const Text('AppBar'),
-          backgroundColor: Colors.blue[100],
-        ),
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            SizedBox(
-              height: 100,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Text('코딩백조'),
-                  Text('2025')
-                ],
-              ),
-            ),
-            Text('안녕하세요!'),
-            SizedBox(height: 40),
-            Text('전 고양이를 좋아합니다'),
-            SizedBox(height: 20),
-
-            // 버튼
-            ElevatedButton(
-              onPressed: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (_) => PhotoScreen()
-                  )
-              ),
-              child: Text("cat photo"),
-            ),
-
-            SizedBox(height: 20),
-
-            // 두 번째 버튼
-            ElevatedButton(
-              onPressed: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (_) => PostListScreen()
-                )
-              ),
-              child: Text("실제 데이터 가져오기"),
-            ),
-
-            SizedBox(height: 20),
-            
-            ElevatedButton(
-              onPressed: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (_) => Counter(initialCount: 0)
-                )
-              ),
-              child: Text('Stateful 위젯'),
-            )
-            
-          ],
-        )
-    );
-  }
+const TAG = "TestLog";
 
   /*
   * 기본 문법 관련 테스트 코드
@@ -685,7 +607,6 @@ class MyApp extends StatelessWidget {
       // 각 이벤트 처리
     }
   }
-}
 
 /// Sub Class
 class Person {

@@ -67,6 +67,11 @@ class CounterState extends State<Counter> {
     });
   }
 
+  // 위젯 트리를 콘솔에 출력
+  void _printWidgetTree() {
+    debugDumpApp();
+  }
+
   /* UI 구성 */
   @override
   Widget build(BuildContext context) {

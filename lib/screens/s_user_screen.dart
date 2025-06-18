@@ -26,44 +26,32 @@ class PostListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: const Text("Posts 목록"),
-          backgroundColor: Colors.tealAccent,
-          leading: IconButton(
-              onPressed: (){
-                Navigator.pop(context);
-              },
-              icon: Icon(Icons.arrow_back)
-          ),
-        ),
-      body: FutureBuilder<List<Posts>>(
-        future: fetchPosts(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(child: CircularProgressIndicator());
-          } else if (snapshot.hasError) {
-            return Center(child: Text('Error: ${snapshot.error}'));
-          } else if (!snapshot.hasData || snapshot.data == null || snapshot.data?.isEmpty == true) {
-            return const Center(child: Text('No posts found.'));
-          } else {
-            // 데이터 있음 처리
-            final posts = snapshot.data!;
+    return FutureBuilder<List<Posts>>(
+      future: fetchPosts(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(child: CircularProgressIndicator());
+        } else if (snapshot.hasError) {
+          return Center(child: Text('Error: ${snapshot.error}'));
+        } else if (!snapshot.hasData || snapshot.data == null || snapshot.data?.isEmpty == true) {
+          return const Center(child: Text('No posts found.'));
+        } else {
+          // 데이터 있음 처리
+          final posts = snapshot.data!;
 
-            // ListView로 데이터 출력
-            return ListView.builder(
-              itemCount: posts.length,
-              itemBuilder: (context, index) {
-                final post = posts[index];
-                return ListTile(
-                  title: Text(post.title),
-                  subtitle: Text(post.body),
-                );
-              },
-            );
-          }
-        }, // builder
-      ),
+          // ListView로 데이터 출력
+          return ListView.builder(
+            itemCount: posts.length,
+            itemBuilder: (context, index) {
+              final post = posts[index];
+              return ListTile(
+                title: Text(post.title),
+                subtitle: Text(post.body),
+              );
+            },
+          );
+        }
+      }, // builder
     );
   }
 }
