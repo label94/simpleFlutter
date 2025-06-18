@@ -1,10 +1,6 @@
 
 import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:simple_flutter/main.dart';
-
 import '../../screens/s_main_page.dart';
 
 /// 공통 App bar 가 있는 Main Shell widget
@@ -23,6 +19,7 @@ class MainShellState extends State<MainShell> {
   // 현재 페이지가 홈인지 유무
   bool _isHome = true;
 
+  /* 각 화면 이동 처리 */
   void _onNavigate(String routeName, Widget page, {required String title}) {
     _navigatorKey.currentState?.push(
       MaterialPageRoute(builder: (context) => page),
@@ -34,6 +31,7 @@ class MainShellState extends State<MainShell> {
     });
   }
 
+  /* 앱바 뒤로가기 버튼 처리 */
   void _onBack() {
     if (_navigatorKey.currentState?.canPop() ?? false) {
       _navigatorKey.currentState?.pop();

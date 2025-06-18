@@ -4,8 +4,6 @@ import 'package:simple_flutter/screens/s_simple_state_ful.dart';
 import 'package:simple_flutter/screens/s_user_screen.dart';
 import 'package:simple_flutter/utils/logger_dart.dart';
 
-import '../widgets/shell/w_main_shell.dart';
-
 /// StatelessWidget : state 가 변동되지 않는 화면
 class MyApp extends StatelessWidget {
   final void Function(String routeName, Widget page, {required String title}) onNavigate;
@@ -14,10 +12,8 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    // main Shell 관련 상태
-    final mainShellState = context.findAncestorStateOfType<MainShellState>();
-
-    return Column(
+    return SingleChildScrollView(
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -64,6 +60,7 @@ class MyApp extends StatelessWidget {
             )
 
           ],
-        );
+        ),
+    );
   }
 }
