@@ -6,11 +6,15 @@ class PhotoScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    return Center(
-        child: Image(
-          image: NetworkImage("https://images.pexels.com/photos/416160/pexels-photo-416160.jpeg"),
-        )
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height,
+      color: Colors.white,
+      child: Center(
+          child: Image(
+            image: NetworkImage("https://images.pexels.com/photos/416160/pexels-photo-416160.jpeg"),
+          )
+      ),
     );
   }
 }
