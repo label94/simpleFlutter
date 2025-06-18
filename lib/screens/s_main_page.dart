@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:simple_flutter/screens/photo_screen.dart';
+import 'package:simple_flutter/screens/s_sample_widget_page.dart';
 import 'package:simple_flutter/screens/s_simple_state_ful.dart';
 import 'package:simple_flutter/screens/s_user_screen.dart';
 import 'package:simple_flutter/utils/logger_dart.dart';
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SizedBox(
+            const SizedBox(
               height: 100,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -27,10 +28,13 @@ class MyApp extends StatelessWidget {
                 ],
               ),
             ),
-            Text('안녕하세요!'),
-            SizedBox(height: 40),
-            Text('전 고양이를 좋아합니다'),
-            SizedBox(height: 20),
+            const Text('안녕하세요!'),
+
+            const SizedBox(height: 40),
+
+            const Text('전 고양이를 좋아합니다'),
+
+            const SizedBox(height: 20),
 
             // 버튼
             ElevatedButton(
@@ -40,7 +44,7 @@ class MyApp extends StatelessWidget {
               child: Text("cat photo"),
             ),
 
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
 
             // 두 번째 버튼
             ElevatedButton(
@@ -50,13 +54,22 @@ class MyApp extends StatelessWidget {
               child: Text("실제 데이터 가져오기"),
             ),
 
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
 
             ElevatedButton(
               onPressed: () {
                 onNavigate('user', const Counter(initialCount: 0), title: "카운터");
               },
               child: Text('Stateful 위젯'),
+            ),
+
+            const SizedBox(height: 20),
+
+            ElevatedButton(
+              onPressed: () {
+                onNavigate('sample', const SampleBaseWidgetScreen(), title: "샘플 위젯");
+              },
+              child: Text('샘플 위젯'),
             )
 
           ],
