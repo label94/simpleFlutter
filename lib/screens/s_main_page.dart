@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:simple_flutter/screens/photo_screen.dart';
+import 'package:simple_flutter/screens/s_sample_provider.dart';
 import 'package:simple_flutter/screens/s_sample_widget_page.dart';
 import 'package:simple_flutter/screens/s_simple_state_ful.dart';
 import 'package:simple_flutter/screens/s_user_screen.dart';
@@ -80,7 +82,49 @@ class MyApp extends StatelessWidget {
                 onNavigate('sample', const SampleBaseWidgetScreen(), title: "샘플 위젯");
               },
               child: const Text('샘플 위젯'),
-            )
+            ),
+
+            const SizedBox(height: 20),
+
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal, // 가로 스크롤
+              child: Row(
+                children: [
+                  OutlinedButton(
+                    onPressed: () {
+                      // 기본 Provider 사용
+                      onNavigate('user', Provider<User>(
+                        create: (_) => User(name: '홍길동', age: 30),
+                        child: UserInfoPage(),
+                      ), title: "사용자 정보");
+                    },
+                    style: OutlinedButton.styleFrom(
+                      side: BorderSide(color: Colors.blue, width: 2),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      )
+                    ),
+                    child: const Text('기본 provider'),
+                  ),
+
+                  const SizedBox(width: 10),
+
+                  OutlinedButton(
+                    onPressed: () {
+
+                    },
+                    style: OutlinedButton.styleFrom(
+                        side: BorderSide(color: Colors.red, width: 2),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        )
+                    ),
+                    child: const Text('ChangeNotifier provider'),
+                  ),
+
+                ],
+              ),
+            ),
 
           ],
         ),
