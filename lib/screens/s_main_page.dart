@@ -3,6 +3,7 @@ import 'package:simple_flutter/screens/photo_screen.dart';
 import 'package:simple_flutter/screens/s_sample_widget_page.dart';
 import 'package:simple_flutter/screens/s_simple_state_ful.dart';
 import 'package:simple_flutter/screens/s_user_screen.dart';
+import 'package:simple_flutter/screens/s_value_notifier.dart';
 import 'package:simple_flutter/utils/logger_dart.dart';
 
 /// StatelessWidget : state 가 변동되지 않는 화면
@@ -41,7 +42,7 @@ class MyApp extends StatelessWidget {
               onPressed: () {
                 onNavigate('photo', const PhotoScreen(), title: "cat photo");
               },
-              child: Text("cat photo"),
+              child: const Text("cat photo"),
             ),
 
             const SizedBox(height: 20),
@@ -60,7 +61,16 @@ class MyApp extends StatelessWidget {
               onPressed: () {
                 onNavigate('user', const Counter(initialCount: 0), title: "카운터");
               },
-              child: Text('Stateful 위젯'),
+              child: const Text('Stateful 위젯'),
+            ),
+
+            const SizedBox(height: 20),
+
+            ElevatedButton(
+              onPressed: () {
+                onNavigate('valueNotifier', const TodoListWithValueNotifier(), title: "valueNotifier");
+              },
+              child: const Text('valueNotifier 예제'),
             ),
 
             const SizedBox(height: 20),
@@ -69,7 +79,7 @@ class MyApp extends StatelessWidget {
               onPressed: () {
                 onNavigate('sample', const SampleBaseWidgetScreen(), title: "샘플 위젯");
               },
-              child: Text('샘플 위젯'),
+              child: const Text('샘플 위젯'),
             )
 
           ],
