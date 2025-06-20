@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:simple_flutter/screens/photo_screen.dart';
+import 'package:simple_flutter/screens/s_change_notifier_provider.dart';
 import 'package:simple_flutter/screens/s_sample_provider.dart';
 import 'package:simple_flutter/screens/s_sample_widget_page.dart';
 import 'package:simple_flutter/screens/s_simple_state_ful.dart';
@@ -111,7 +112,11 @@ class MyApp extends StatelessWidget {
 
                   OutlinedButton(
                     onPressed: () {
-
+                      // ChangeNotifier provider 사용
+                      onNavigate('changeNotifier', ChangeNotifierProvider<ChangeCounter>(
+                        create: (_) => ChangeCounter(),
+                        child: ChangeCounterScreen(),
+                      ) , title: "ChangeNotifier provider");
                     },
                     style: OutlinedButton.styleFrom(
                         side: BorderSide(color: Colors.red, width: 2),
